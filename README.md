@@ -10,4 +10,7 @@ MiniEngine requires Node.js. We are testing it on v16.4.0.
 
 ```
 $ npm install
+$ npm run develop
 ```
+
+http://localhost:8080/
