@@ -6,11 +6,14 @@ import { Program } from "./webgl2/Program";
 import { ProgramFactory } from "./webgl2/ProgramFactory";
 import { Shader } from "./webgl2/Shader";
 import { ShaderFactory } from "./webgl2/ShaderFactory";
+import { VertexArray } from "./webgl2/VertexArray";
+import { VertexArrayFactory } from "./webgl2/VertexArrayFactory";
 
 export class GameContext {
     gl: WebGL2RenderingContext;
     canvas: Canvas;
     private shaderFactory: ShaderFactory;
+    private vertexArrayFactory: VertexArrayFactory;
     private bufferFactory: BufferFactory;
     private programFactory: ProgramFactory;
 
@@ -18,11 +21,13 @@ export class GameContext {
         gl: WebGL2RenderingContext,
         canvas: Canvas,
         bufferFactroy: BufferFactory,
+        vertexArrayFactory: VertexArrayFactory,
         shaderFactory: ShaderFactory,
         programFactory: ProgramFactory
     ) {
         this.gl = gl;
         this.canvas = canvas;
+        this.vertexArrayFactory = vertexArrayFactory;
         this.bufferFactory = bufferFactroy;
         this.shaderFactory = shaderFactory;
         this.programFactory = programFactory;
@@ -30,6 +35,10 @@ export class GameContext {
 
     createArrayBuffer<T extends BufferSource>(data: T, usage: BufferUsage): MiniBuffer<T> {
         return this.bufferFactory.createArrayBuffer<T>(data, usage);
+    }
+
+    createVertexArray(): VertexArray {
+        return this.vertexArrayFactory.createVertexArray();
     }
 
     createVertexShader(source: string): Shader {

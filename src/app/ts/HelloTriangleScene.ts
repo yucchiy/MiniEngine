@@ -7,9 +7,11 @@ import VertexShaderSource from "../glsl/HelloTriangleScene/vertex.glsl";
 import FragmentShaderSource from "../glsl/HelloTriangleScene/fragment.glsl";
 import { GameContext } from "../../mini/ts/GameContext";
 import { SceneCreator } from "../../mini/ts/SceneCreator";
+import { VertexArray } from "../../mini/ts/webgl2/VertexArray";
 
 export class HelloTriangleScene extends BaseScene {
     private program: Program;
+    private vertexArray: VertexArray;
     private vertexPositionBuffer: MiniBuffer<Float32Array>;
     private vertexColorBuffer: MiniBuffer<Float32Array>;
 
@@ -31,10 +33,28 @@ export class HelloTriangleScene extends BaseScene {
         var vertexShader = ctx.createVertexShader(VertexShaderSource);
         var fragmentShader = ctx.createFragmentShader(FragmentShaderSource);
         this.program = ctx.createProgram(vertexShader, fragmentShader);
+        this.vertexArray = ctx.createVertexArray();
         this.vertexPositionBuffer = ctx.createArrayBuffer(new Float32Array(positions), BufferUsage.StaticDraw);
         this.vertexPositionBuffer.sendData();
         this.vertexColorBuffer = ctx.createArrayBuffer(new Float32Array(colors), BufferUsage.StaticDraw);
         this.vertexColorBuffer.sendData();
+
+        this.program.use();
+        var gl = ctx.gl;
+
+        this.vertexArray.bind();
+
+        var attributePosition = this.program.getAttributeLocation('position');
+        this.vertexPositionBuffer.bind();
+        gl.enableVertexAttribArray(attributePosition);
+        gl.vertexAttribPointer(attributePosition, 3, gl.FLOAT, false, 0, 0);
+
+        var attributeColor = this.program.getAttributeLocation('color');
+        this.vertexColorBuffer.bind();
+        gl.enableVertexAttribArray(attributeColor);
+        gl.vertexAttribPointer(attributeColor, 4, gl.FLOAT, false, 0, 0);
+
+        this.vertexArray.unbind();
     }
 
     renderScene(deltaTime: number, ctx: GameContext): void {
@@ -47,18 +67,11 @@ export class HelloTriangleScene extends BaseScene {
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         this.program.use();
-
-        var attributePosition = this.program.getAttributeLocation('position');
-        this.vertexPositionBuffer.bind();
-        gl.enableVertexAttribArray(attributePosition);
-        gl.vertexAttribPointer(attributePosition, 3, gl.FLOAT, false, 0, 0);
-
-        var attributeColor = this.program.getAttributeLocation('color');
-        this.vertexColorBuffer.bind();
-        gl.enableVertexAttribArray(attributeColor);
-        gl.vertexAttribPointer(attributeColor, 4, gl.FLOAT, false, 0, 0);
+        this.vertexArray.bind();
 
         gl.drawArrays(gl.TRIANGLES, 0, 3);
+
+        this.vertexArray.unbind();
 
         gl.flush();
     }

@@ -6,6 +6,7 @@ import { SceneCreator } from "./SceneCreator";
 import { BufferFactory } from "./webgl2/BufferFactory";
 import { ProgramFactory } from "./webgl2/ProgramFactory";
 import { ShaderFactory } from "./webgl2/ShaderFactory";
+import { VertexArrayFactory } from "./webgl2/VertexArrayFactory";
 import { WebGL2ContextFactory } from "./webgl2/WebGL2ContextFactory";
 
 export class Game {
@@ -13,6 +14,7 @@ export class Game {
     private webGLContextFactory: WebGL2ContextFactory;
     private shaderFactory: ShaderFactory;
     private bufferFactory: BufferFactory;
+    private vertexArrayFactory: VertexArrayFactory;
     private programFactory: ProgramFactory;
 
     private context: GameContext;
@@ -30,10 +32,11 @@ export class Game {
 
         this.shaderFactory = new ShaderFactory(this.gl);
         this.bufferFactory = new BufferFactory(this.gl);
+        this.vertexArrayFactory = new VertexArrayFactory(this.gl);
         this.programFactory = new ProgramFactory(this.gl);
 
         // build game context
-        this.context = new GameContext(this.gl, this.canvas, this.bufferFactory, this.shaderFactory, this.programFactory);
+        this.context = new GameContext(this.gl, this.canvas, this.bufferFactory, this.vertexArrayFactory, this.shaderFactory, this.programFactory);
 
         this.canvas.setSize(600, 600);
     }
