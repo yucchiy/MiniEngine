@@ -1,5 +1,5 @@
 import { Game } from "../../mini/ts/Game";
-import { WebGLContext as GL } from "../../mini/ts/WebGLContext";
+import { WebGLContext as GL } from "../../mini/ts/webgl/WebGLContext";
 import { BaseScene } from "./BaseScene";
 
 export class EmptyScene extends BaseScene {
@@ -8,7 +8,7 @@ export class EmptyScene extends BaseScene {
     }
 
     renderScene(deltaTime: number): void {
-        var gl = this.game.gl;
+        var gl = this.game.webglContext;
         var canvas = this.game.canvas;
 
         gl.viewport(0, 0, canvas.width, canvas.height);

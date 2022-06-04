@@ -1,4 +1,4 @@
-import { Canvas } from "./Canvas";
+import { Canvas } from "../Canvas";
 import { WebGLContext } from "./WebGLContext";
 
 export class WebGLContextFactory {

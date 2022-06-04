@@ -24,12 +24,21 @@ export class WebGLContext {
     clear(mask : number) {
         this.gl.COLOR_WRITEMASK
         this.gl.clear(mask);
+        this.gl.bindBuffer
     }
 
     flush() {
         this.gl.flush();
     }
 
-    static readonly COLOR_BUFFER_BIT : number = WebGLRenderingContext.COLOR_BUFFER_BIT;
-    static readonly DEPTH_BUFFER_BIT : number = WebGLRenderingContext.DEPTH_BUFFER_BIT;
+    get rawContext(): WebGLRenderingContext {
+        return this.gl;
+    }
+
+    static readonly COLOR_BUFFER_BIT: number = WebGLRenderingContext.COLOR_BUFFER_BIT;
+    static readonly DEPTH_BUFFER_BIT: number = WebGLRenderingContext.DEPTH_BUFFER_BIT;
+
+    static readonly ARRAY_BUFFER: number = WebGLRenderingContext.ARRAY_BUFFER;
+
+    static readonly STATIC_DRAW: number = WebGLRenderingContext.STATIC_DRAW;
 }

@@ -33,6 +33,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "glslify-loader": "^2.0.0",
     "webpack-dev-server": "^4.9.1"
   }
 }

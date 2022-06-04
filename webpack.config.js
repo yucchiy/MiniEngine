@@ -25,11 +25,10 @@ module.exports = {
         rules: [
             {
                 test: /\.(frag|vert|glsl)$/,
-                include: [
-                    path.resolve(__dirname, 'src/chibi/glsl'),
-                ],
+                exclude: '/node_modules/',
                 use: [
-                    'raw-loader'
+                    'raw-loader',
+                    'glslify-loader'
                 ]
             },
             {

@@ -2,16 +2,18 @@ import { Canvas } from "./Canvas";
 import { CanvasFactory } from "./CanvasFactory";
 import { IRenderable } from "./IRenderable";
 import { IScene } from "./IScene";
-import { WebGLContext } from "./WebGLContext";
-import { WebGLContextFactory } from "./WebGLContextFactory";
+import { WebGLContext } from "./webgl/WebGLContext";
+import { WebGLContextFactory } from "./webgl/WebGLContextFactory";
 
 export class Game {
     canvas : Canvas;
-    gl : WebGLContext;
+    webglContext : WebGLContext;
+    gl: WebGLRenderingContext;
 
     constructor(body : HTMLElement) {
         this.canvas = CanvasFactory.CreateCanvas(body);
-        this.gl = WebGLContextFactory.CreateContext(this.canvas);
+        this.webglContext = WebGLContextFactory.CreateContext(this.canvas);
+        this.gl = this.webglContext.rawContext;
         this.canvas.setSize(600, 600);
     }
 
