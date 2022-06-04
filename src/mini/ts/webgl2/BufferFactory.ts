@@ -3,8 +3,8 @@ import { BufferType } from './BufferType';
 import { BufferUsage } from './BufferUsage';
 
 export class BufferFactory {
-    private gl: WebGLRenderingContext;
-    constructor(gl: WebGLRenderingContext) {
+    private gl: WebGL2RenderingContext;
+    constructor(gl: WebGL2RenderingContext) {
         this.gl = gl;
     }
 

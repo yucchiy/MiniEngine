@@ -3,7 +3,7 @@ import { ShaderType } from "./ShaderType";
 export class Shader {
     private shader: WebGLShader;
 
-    constructor(gl: WebGLRenderingContext, type: ShaderType, source: string) {
+    constructor(gl: WebGL2RenderingContext, type: ShaderType, source: string) {
         var shader = gl.createShader(type);
         if (shader === null) {
             throw new Error("failed to create shader.");

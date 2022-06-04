@@ -2,8 +2,8 @@ import { Shader } from "./Shader";
 import { ShaderType } from "./ShaderType";
 
 export class ShaderFactory {
-    private gl: WebGLRenderingContext;
-    constructor(gl: WebGLRenderingContext) {
+    private gl: WebGL2RenderingContext;
+    constructor(gl: WebGL2RenderingContext) {
         this.gl = gl;
     }
 

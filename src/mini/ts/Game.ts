@@ -3,14 +3,14 @@ import { CanvasFactory } from "./CanvasFactory";
 import { GameContext } from "./GameContext";
 import { IScene } from "./IScene";
 import { SceneCreator } from "./SceneCreator";
-import { BufferFactory } from "./webgl/BufferFactory";
-import { ProgramFactory } from "./webgl/ProgramFactory";
-import { ShaderFactory } from "./webgl/ShaderFactory";
-import { WebGLContextFactory } from "./webgl/WebGLContextFactory";
+import { BufferFactory } from "./webgl2/BufferFactory";
+import { ProgramFactory } from "./webgl2/ProgramFactory";
+import { ShaderFactory } from "./webgl2/ShaderFactory";
+import { WebGL2ContextFactory } from "./webgl2/WebGL2ContextFactory";
 
 export class Game {
     private canvasFactory: CanvasFactory;
-    private webGLContextFactory: WebGLContextFactory;
+    private webGLContextFactory: WebGL2ContextFactory;
     private shaderFactory: ShaderFactory;
     private bufferFactory: BufferFactory;
     private programFactory: ProgramFactory;
@@ -18,12 +18,12 @@ export class Game {
     private context: GameContext;
 
     canvas : Canvas;
-    gl: WebGLRenderingContext;
+    gl: WebGL2RenderingContext;
 
     constructor(body : HTMLElement) {
         // build factories
         this.canvasFactory = new CanvasFactory();
-        this.webGLContextFactory = new WebGLContextFactory();
+        this.webGLContextFactory = new WebGL2ContextFactory();
 
         this.canvas = this.canvasFactory.createCanvas(body);
         this.gl = this.webGLContextFactory.createContext(this.canvas);

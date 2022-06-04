@@ -1,6 +1,6 @@
 # MiniEngine
 
-My private project for studying 3DCG.
+My Toy GameEngine for studying 3DCG based on **WebGL2**.
 
 ## Requirements
 

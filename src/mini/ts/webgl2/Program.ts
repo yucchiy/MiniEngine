@@ -1,10 +1,10 @@
 import { Shader } from "./Shader";
 
 export class Program {
-    private gl: WebGLRenderingContext;
+    private gl: WebGL2RenderingContext;
     private program: WebGLProgram;
 
-    constructor(gl: WebGLRenderingContext, vertexShader: Shader, fragmentShader: Shader) {
+    constructor(gl: WebGL2RenderingContext, vertexShader: Shader, fragmentShader: Shader) {
         var program = gl.createProgram();
         if (program === null) {
             throw new Error("failed to create program.");

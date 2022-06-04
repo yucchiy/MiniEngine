@@ -1,21 +1,21 @@
 import { Canvas } from "./Canvas";
-import { Buffer as MiniBuffer } from "./webgl/Buffer";
-import { BufferFactory } from "./webgl/BufferFactory";
-import { BufferUsage } from "./webgl/BufferUsage";
-import { Program } from "./webgl/Program";
-import { ProgramFactory } from "./webgl/ProgramFactory";
-import { Shader } from "./webgl/Shader";
-import { ShaderFactory } from "./webgl/ShaderFactory";
+import { Buffer as MiniBuffer } from "./webgl2/Buffer";
+import { BufferFactory } from "./webgl2/BufferFactory";
+import { BufferUsage } from "./webgl2/BufferUsage";
+import { Program } from "./webgl2/Program";
+import { ProgramFactory } from "./webgl2/ProgramFactory";
+import { Shader } from "./webgl2/Shader";
+import { ShaderFactory } from "./webgl2/ShaderFactory";
 
 export class GameContext {
-    gl: WebGLRenderingContext;
+    gl: WebGL2RenderingContext;
     canvas: Canvas;
     private shaderFactory: ShaderFactory;
     private bufferFactory: BufferFactory;
     private programFactory: ProgramFactory;
 
     constructor(
-        gl: WebGLRenderingContext,
+        gl: WebGL2RenderingContext,
         canvas: Canvas,
         bufferFactroy: BufferFactory,
         shaderFactory: ShaderFactory,
