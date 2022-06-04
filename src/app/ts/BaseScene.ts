@@ -1,16 +1,11 @@
-import { Game } from "../../mini/ts/Game";
-import { IRenderable } from "../../mini/ts/IRenderable";
+import { GameContext } from "../../mini/ts/GameContext";
+import { Renderable } from "../../mini/ts/Renderable";
 import { IScene } from "../../mini/ts/IScene";
 
-export abstract class BaseScene implements IScene, IRenderable {
-    game : Game;
-    constructor(game : Game) {
-        this.game = game;
+export abstract class BaseScene implements IScene, Renderable {
+    render(deltaTime: number, ctx: GameContext): void {
+        this.renderScene(deltaTime, ctx);
     }
 
-    render(deltaTime: number): void {
-        this.renderScene(deltaTime);
-    }
-
-    abstract renderScene(deltaTime: number) : void
+    abstract renderScene(deltaTime: number, ctx: GameContext) : void
 }
