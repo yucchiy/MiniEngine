@@ -1,7 +1,7 @@
-import { Program } from "../../mini/ts/webgl/Program";
+import { Program } from "../../mini/ts/webgl2/Program";
 import { BaseScene } from "./BaseScene";
-import { Buffer as MiniBuffer } from "../../mini/ts/webgl/Buffer";
-import { BufferUsage } from "../../mini/ts/webgl/BufferUsage";
+import { Buffer as MiniBuffer } from "../../mini/ts/webgl2/Buffer";
+import { BufferUsage } from "../../mini/ts/webgl2/BufferUsage";
 
 import VertexShaderSource from "../glsl/HelloTriangleScene/vertex.glsl";
 import FragmentShaderSource from "../glsl/HelloTriangleScene/fragment.glsl";
