@@ -4,9 +4,8 @@
   "description": "My private project for studying 3DCG",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "develop": "webpack-dev-server --progress --hot",
-    "watch": "webpack --progress --watch"
+    "build": "webpack --mode production",
+    "develop": "webpack-dev-server --progress --hot"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,6 @@
     "html-webpack-plugin": "^5.5.0",
     "raw-loader": "^4.0.2",
     "ts-loader": "^9.3.0",
-    "ts-shader-loader": "^1.0.6",
     "typescript": "^4.7.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"

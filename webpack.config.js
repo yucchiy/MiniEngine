@@ -1,4 +1,4 @@
- var path = require('path');
+var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var debug = process.env.NODE_ENV !== 'production';
@@ -39,9 +39,6 @@ module.exports = {
                 ]
             }
         ]
-    },
-    devServer: {
-        hot: true,
     },
     mode: debug ? 'development' : 'production',
     devtool: debug ? 'eval-source-map' : 'source-map',
