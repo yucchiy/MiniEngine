@@ -1,4 +1,5 @@
 import { Shader } from "./Shader";
+import { Uniform } from "./Uniform";
 
 export class Program {
     private gl: WebGL2RenderingContext;
@@ -27,5 +28,10 @@ export class Program {
 
     getAttributeLocation(attribute: string): number {
         return this.gl.getAttribLocation(this.program, attribute);
+    }
+
+    getUniform(name: string): Uniform {
+        this.use();
+        return new Uniform(this.gl, this.program, name);
     }
 }

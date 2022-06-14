@@ -29,8 +29,4 @@ export class Buffer<T extends BufferSource> {
     bind() {
         this.gl.bindBuffer(this.target, this.buffer);
     }
-
-    unbind() {
-        this.gl.bindBuffer(this.target, null);
-    }
 }
