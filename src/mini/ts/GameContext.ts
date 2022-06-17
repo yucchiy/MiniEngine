@@ -37,6 +37,10 @@ export class GameContext {
         return this.bufferFactory.createArrayBuffer<T>(data, usage);
     }
 
+    createIndexBuffer<T extends BufferSource>(data: T, usage: BufferUsage): MiniBuffer<T> {
+        return this.bufferFactory.createIndexBuffer<T>(data, usage);
+    }
+
     createVertexArray(): VertexArray {
         return this.vertexArrayFactory.createVertexArray();
     }

@@ -11,4 +11,8 @@ export class BufferFactory {
     createArrayBuffer<T extends BufferSource>(data: T, usage: BufferUsage): MiniBuffer<T> {
         return new MiniBuffer<T>(this.gl, BufferType.ArrayBuffer, data, usage);
     }
+
+    createIndexBuffer<T extends BufferSource>(data: T, usage: BufferUsage): MiniBuffer<T> {
+        return new MiniBuffer<T>(this.gl, BufferType.IndexBuffer, data, usage);
+    }
 }
