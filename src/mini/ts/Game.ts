@@ -1,3 +1,4 @@
+import { Camera } from "./Camera";
 import { Canvas } from "./Canvas";
 import { CanvasFactory } from "./CanvasFactory";
 import { GameContext } from "./GameContext";
@@ -20,6 +21,7 @@ export class Game {
     private context: GameContext;
 
     canvas : Canvas;
+    camera: Camera;
     gl: WebGL2RenderingContext;
 
     constructor(body : HTMLElement) {
@@ -28,6 +30,7 @@ export class Game {
         this.webGLContextFactory = new WebGL2ContextFactory();
 
         this.canvas = this.canvasFactory.createCanvas(body);
+        this.camera = new Camera(this.canvas);
         this.gl = this.webGLContextFactory.createContext(this.canvas);
 
         this.shaderFactory = new ShaderFactory(this.gl);
@@ -36,7 +39,7 @@ export class Game {
         this.programFactory = new ProgramFactory(this.gl);
 
         // build game context
-        this.context = new GameContext(this.gl, this.canvas, this.bufferFactory, this.vertexArrayFactory, this.shaderFactory, this.programFactory);
+        this.context = new GameContext(this.gl, this.canvas, this.camera, this.bufferFactory, this.vertexArrayFactory, this.shaderFactory, this.programFactory);
 
         this.canvas.setSize(600, 600);
     }

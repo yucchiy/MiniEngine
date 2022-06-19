@@ -48,22 +48,15 @@ export class CameraScene extends BaseScene {
         var vertexShader = ctx.createVertexShader(VertexShaderSource);
         var fragmentShader = ctx.createFragmentShader(FragmentShaderSource);
         this.program = ctx.createProgram(vertexShader, fragmentShader);
-        console.log(indices);
 
         var identity = mat4.create();
         mat4.identity(identity);
         this.modelMatrixUniform = this.program.getUniform("ModelMatrix");
         this.modelMatrixUniform.uniformMatrix4(identity);
-        var view = mat4.create();
-        mat4.lookAt(view, [3, 3, -3], [0, 0, 0], [0, 1, 0]);
         this.viewMatrixUniform = this.program.getUniform("ViewMatrix");
-        this.viewMatrixUniform.uniformMatrix4(view);
-        var projection = mat4.create();
-        mat4.perspectiveZO(projection, 1, ctx.canvas.width / ctx.canvas.height, 0.1, 10);
+        this.viewMatrixUniform.uniformMatrix4(ctx.camera.viewMatrix);
         this.projectionMatrixUniform = this.program.getUniform("ProjectionMatrix");
-        this.projectionMatrixUniform.uniformMatrix4(projection);
-        console.log(view);
-        console.log(projection);
+        this.projectionMatrixUniform.uniformMatrix4(ctx.camera.projectionMatrix);
 
         this.vertexArray = ctx.createVertexArray();
         this.vertexPositionBuffer = ctx.createArrayBuffer(new Float32Array(positions), BufferUsage.StaticDraw);

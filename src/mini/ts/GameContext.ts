@@ -1,3 +1,4 @@
+import { Camera } from "./Camera";
 import { Canvas } from "./Canvas";
 import { Buffer as MiniBuffer } from "./webgl2/Buffer";
 import { BufferFactory } from "./webgl2/BufferFactory";
@@ -12,6 +13,7 @@ import { VertexArrayFactory } from "./webgl2/VertexArrayFactory";
 export class GameContext {
     gl: WebGL2RenderingContext;
     canvas: Canvas;
+    camera: Camera;
     private shaderFactory: ShaderFactory;
     private vertexArrayFactory: VertexArrayFactory;
     private bufferFactory: BufferFactory;
@@ -20,6 +22,7 @@ export class GameContext {
     constructor(
         gl: WebGL2RenderingContext,
         canvas: Canvas,
+        camera: Camera,
         bufferFactroy: BufferFactory,
         vertexArrayFactory: VertexArrayFactory,
         shaderFactory: ShaderFactory,
@@ -27,6 +30,7 @@ export class GameContext {
     ) {
         this.gl = gl;
         this.canvas = canvas;
+        this.camera = camera;
         this.vertexArrayFactory = vertexArrayFactory;
         this.bufferFactory = bufferFactroy;
         this.shaderFactory = shaderFactory;

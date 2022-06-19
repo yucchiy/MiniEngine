@@ -20,6 +20,10 @@ export class Canvas {
         return this.canvas.height;
     }
 
+    get aspect(): number {
+        return this.canvas.width / this.canvas.height;
+    }
+
     getContext(contextId: string) : RenderingContext | null {
         return this.canvas.getContext(contextId);
     }
