@@ -8,9 +8,9 @@ import FragmentShaderSource from "../glsl/CameraScene/fragment.glsl";
 import { GameContext } from "../../mini/ts/GameContext";
 import { SceneCreator } from "../../mini/ts/SceneCreator";
 import { VertexArray } from "../../mini/ts/webgl2/VertexArray";
-import { PrimitiveFactory } from "../../mini/ts/PrimitiveFactory";
 import { Uniform } from "../../mini/ts/webgl2/Uniform";
-import { mat3, mat4, vec3 } from "gl-matrix";
+import { mat4, vec3 } from "gl-matrix";
+import GUI from "lil-gui";
 
 export class CameraScene extends BaseScene {
     private program: Program;
@@ -22,6 +22,8 @@ export class CameraScene extends BaseScene {
     private modelMatrixUniform : Uniform;
     private viewMatrixUniform : Uniform;
     private projectionMatrixUniform : Uniform;
+
+    private gui: GUI;
 
     constructor(ctx: GameContext) {
         super();
@@ -83,6 +85,13 @@ export class CameraScene extends BaseScene {
         gl.enableVertexAttribArray(attributeColor);
         gl.vertexAttribPointer(attributeColor, 4, gl.FLOAT, false, 0, 0);
 
+        this.gui = new GUI();
+
+        const folder = this.gui.addFolder('Camera position');
+        folder.add(ctx.camera.position, '0', -10, 10);
+        folder.add(ctx.camera.position, '1', -10, 10);
+        folder.add(ctx.camera.position, '2', -10, 10);
+
         this.vertexArray.unbind();
     }
 
@@ -94,6 +103,8 @@ export class CameraScene extends BaseScene {
         gl.clearColor(0, 0, 0, 1);
         gl.clearDepth(1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+
+        this.viewMatrixUniform.uniformMatrix4(ctx.camera.viewMatrix);
 
         this.program.use();
         this.vertexArray.bind();
