@@ -1,3 +1,4 @@
+import { mat4 } from "gl-matrix";
 import { Program } from "./Program";
 
 export class Uniform {
@@ -23,5 +24,9 @@ export class Uniform {
 
     uniform1i(x: number) {
         this.gl.uniform1i(this.location, x);
+    }
+
+    uniformMatrix4(x: mat4) {
+        this.gl.uniformMatrix4fv(this.location, false, x);
     }
 }
