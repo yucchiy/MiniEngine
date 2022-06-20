@@ -37,6 +37,18 @@ module.exports = {
                 use: [
                     'ts-loader'
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 15000,
+                        }
+                    }
+                ]
             }
         ]
     },
